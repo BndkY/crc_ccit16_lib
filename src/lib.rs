@@ -15,12 +15,15 @@ const CRC16_CCITT_TABLE: [u16;256] = [0x00, 0x1021, 0x2042, 0x3063, 0x4084, 0x50
     0xff3e, 0xcf5d, 0xdf7c, 0xaf9b, 0xbfba, 0x8fd9, 0x9ff8, 0x6e17, 0x7e36, 0x4e55, 0x5e74, 0x2e93, 0x3eb2, 0xed1, 0x1ef0];
 
 /**
- * \brief Calculate CRC16-CCITT check for the data
+ * Calculate CRC16-CCITT check for the data
  *
- * \param data data to calculate CRC16-CCITT
- * \param length length of data
+ * # Arguments
+ * * `data` - data to calculate CRC16-CCITT
+ * * `length` - length of data
  *
- * \return unsigned short CRC16-CCITT for data
+ * # Return
+ * 
+ * * `unsigned short` - CRC16-CCITT for data
  */
 pub fn crc__CRC16CCITT(data: &Vec<u8>) -> u16{
     let mut crc: u16 = CCIT16_START;
@@ -31,25 +34,30 @@ pub fn crc__CRC16CCITT(data: &Vec<u8>) -> u16{
 }
 
 /**
- * \brief Updates CRC16-CCITT check from a previously calculated CRC16-CCITT
+ * Updates CRC16-CCITT check from a previously calculated CRC16-CCITT
  *
- * \param crc16ccitt previous CRC16-CCITT
- * \param value value to be added to CRC16-CCITT
+ * # Arguments
+ * 
+ * * `crc16ccitt` - previous CRC16-CCITT
+ * * `value` - value to be added to CRC16-CCITT
  *
- * \return unsigned short a new CRC16-CCITT considering the value
+ * # Return
+ * * `unsigned short` a new CRC16-CCITT considering the value
  */
 pub fn crc__CRC16CCITTU(crc16ccitt: u16, value: u8) -> u16 {
     ((crc16ccitt << 8) & 0xFF00) ^ CRC16_CCITT_TABLE[(((crc16ccitt >> 8) ^ value as u16) & 0x00FF) as usize]
 }
 
 /**
- * \brief Calculate CRC16-CCITT from a previous CRC
+ *  Calculate CRC16-CCITT from a previous CRC
  *
- * \param data data to calculate CRC16-CCITT
- * \param length length of data
- * \param previous previously calculated crc
+ * # Arguments
+ * * `data` - data to calculate CRC16-CCITT
+ * * `length` - length of data
+ * * `previous` - previously calculated crc
  *
- * \return unsigned short CRC16-CCITT for data
+ * # Return
+ * * unsigned short CRC16-CCITT for data
  */
 pub fn prev_crc__CRC16CCITT(data: &Vec<u8>, previous: u16) -> u16 {
     let mut crc: u16 = previous;
@@ -65,9 +73,7 @@ pub fn prev_crc__CRC16CCITT(data: &Vec<u8>, previous: u16) -> u16 {
  * # Arguments
  * * `command` - pointer to the command vector
  * 
- * 
  * # Return
- * 
  * 
  * # Example
  * ```
